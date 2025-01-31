@@ -56,7 +56,7 @@
     "description": "A quick burst of electricity strikes a target and possibly one other nearby.",
     "copy-from": "shocking_lash_base",
     "field_id": "none",
-    "extra_effects": [ { "id": "shocking_lash_2" }, { "id": "eoc_evocation_setup" } ]
+    "extra_effects": [ { "id": "shocking_lash_2" }, { "id": "eoc_evocation_setup", "hit_self": true } ]
   },
   {
     "id": "shocking_lash_2",
