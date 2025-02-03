@@ -451,7 +451,8 @@ void monster::try_upgrade( bool pin_time )
         return;
     }
 
-    const int current_day = to_days<int>( calendar::turn - calendar::turn_zero );
+    // Stop evolution after 180 days
+    const int current_day = to_days<int>( std::min( time_duration::from_days(180), calendar::turn - calendar::turn_zero ) );
     //This should only occur when a monster is created or upgraded to a new form
     if( upgrade_time < 0 ) {
         upgrade_time = next_upgrade_time();

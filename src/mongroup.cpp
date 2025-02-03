@@ -122,8 +122,8 @@ const MonsterGroup &MonsterGroupManager::GetUpgradedMonsterGroup( const mongroup
     if( get_option<float>( "MONSTER_UPGRADE_FACTOR" ) > 0 ) {
         const time_duration replace_time = groupptr->monster_group_time *
                                            get_option<float>( "MONSTER_UPGRADE_FACTOR" );
-        while( groupptr->replace_monster_group &&
-               calendar::turn - time_point( calendar::start_of_cataclysm ) > replace_time ) {
+        const time_duration  passed_time = std::min(calendar::turn - time_point( calendar::start_of_cataclysm ), time_duration::from_days( 180 ) );
+        while( groupptr->replace_monster_group && passed_time > replace_time ) {
             groupptr = &groupptr->new_monster_group.obj();
         }
     }
