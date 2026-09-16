@@ -465,7 +465,13 @@ void monster::try_upgrade( bool pin_time )
         return;
     }
 
-    const int current_day = to_days<int>( calendar::turn - calendar::turn_zero );
+    // Non-linear speed of monster upgrades: a bit faster in the beginning, then  progressively slow down.
+    // Creatures than 'grow' are not affected by this.
+    const int real_current_day = to_days<int>( calendar::turn - calendar::turn_zero );
+    const int current_day = ( type->age_grow > 0 )
+        ? real_current_day
+        : static_cast<int>( 400.0f - ( 80000.0f / static_cast<float>( real_current_day + 200 ) ) );
+
     //This should only occur when a monster is created or upgraded to a new form
     if( upgrade_time < 0 ) {
         upgrade_time = next_upgrade_time();
