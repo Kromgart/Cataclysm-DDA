@@ -1256,8 +1256,7 @@ static bool eat( item &food, Character &you, bool force )
     std::unordered_set<itype_id> seasonings_set( seasonings_list.begin(), seasonings_list.end() );
 
     item_location seasoning;
-    // Food that takes no seasoning has nothing to match, so skip the search over
-    // the inventory and the surrounding map.
+    // Food that takes no seasoning has nothing to match, so skip the search
     if( !seasonings_set.empty() ) {
         auto legal_to_consume = [&]( const item & it ) {
             return it.is_owned_by( you ) && ( seasonings_set.find( it.typeId() ) != seasonings_set.end() );
@@ -1268,7 +1267,7 @@ static bool eat( item &food, Character &you, bool force )
         };
 
         std::unordered_set<item_location> all_valid_seasonings = get_map().all_items( legal_to_consume,
-                you, Access_Inventory | Access_Map_Around );
+                you, Access_Inventory );
 
         for( const item_location &checked : all_valid_seasonings ) {
             // Always pick the best(highest fun) valid seasoning we find.
