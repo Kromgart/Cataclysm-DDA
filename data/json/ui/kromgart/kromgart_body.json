@@ -1,0 +1,429 @@
+[
+  {
+    "id": "kromgart_body",
+    "label": "body",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "rows",
+    "padding": 0,
+    "widgets": [
+      "kromgart_body_headers",
+      "kromgart_body_row_status",
+      "kromgart_body_row_hp",
+      "kromgart_body_row_enc",
+      "kromgart_body_row_wetness",
+      "kromgart_body_row_warmth",
+      "kromgart_pad__"
+    ]
+  },
+
+  {
+    "id": "kromgart_body_headers",
+    "type": "widget",
+    "style": "text",
+    "string": "    LAHTAL"
+  },
+  
+
+  {
+    "id": "kromgart_body_row_template",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "width": 10
+  },
+  {
+    "id": "kromgart_body_row_label",
+    "type": "widget",
+    "style": "text",
+    "string": "____",
+    "width": 4
+  },
+  {
+    "id": "kromgart_body_status_label",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_label",
+    "string": "STS "
+  },
+  {
+    "id": "kromgart_body_hp_label",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_label",
+    "string": " HP "
+  },
+  {
+    "id": "kromgart_body_enc_label",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_label",
+    "string": "ENC "
+  },
+  {
+    "id": "kromgart_body_warmth_label",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_label",
+    "string": "WRM "
+  },
+  {
+    "id": "kromgart_body_wetness_label",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_label",
+    "string": "WET "
+  },
+
+  {
+    "id": "kromgart_body_graph_block",
+    "type": "widget",
+    "style": "graph",
+    "width": 1,
+    "symbols": "▇▇"
+  },
+  {
+    "id": "kromgart_body_hp",
+    "type": "widget",
+    "copy-from": "kromgart_body_graph_block",
+    "var": "bp_hp",
+    "colors": ["c_red", "c_yellow", "c_green", "c_black"],
+    "breaks": [50, 85, 98]
+  },
+  {
+    "id": "kromgart_body_hp_leg_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_hp",
+    "bodypart": "leg_l"
+  },
+  {
+    "id": "kromgart_body_hp_leg_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_hp",
+    "bodypart": "leg_r"
+  },
+  {
+    "id": "kromgart_body_hp_arm_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_hp",
+    "bodypart": "arm_l"
+  },
+  {
+    "id": "kromgart_body_hp_arm_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_hp",
+    "bodypart": "arm_r"
+  },
+  {
+    "id": "kromgart_body_hp_head",
+    "type": "widget",
+    "copy-from": "kromgart_body_hp",
+    "bodypart": "head"
+  },
+  {
+    "id": "kromgart_body_hp_torso",
+    "type": "widget",
+    "copy-from": "kromgart_body_hp",
+    "bodypart": "torso"
+  },
+
+
+  {
+    "id": "kromgart_body_enc",
+    "type": "widget",
+    "copy-from": "kromgart_body_graph_block",
+    "var": "bp_encumb",
+    "colors": ["c_black", "c_dark_gray", "c_light_gray", "c_white", "c_yellow", "c_red" ],
+    "breaks": [1, 4, 8, 15, 25]
+  },
+  {
+    "id": "kromgart_body_enc_leg_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_enc",
+    "bodypart": "leg_l"
+  },
+  {
+    "id": "kromgart_body_enc_leg_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_enc",
+    "bodypart": "leg_r"
+  },
+  {
+    "id": "kromgart_body_enc_arm_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_enc",
+    "bodypart": "arm_l"
+  },
+  {
+    "id": "kromgart_body_enc_arm_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_enc",
+    "bodypart": "arm_r"
+  },
+  {
+    "id": "kromgart_body_enc_head",
+    "type": "widget",
+    "copy-from": "kromgart_body_enc",
+    "bodypart": "head"
+  },
+  {
+    "id": "kromgart_body_enc_torso",
+    "type": "widget",
+    "copy-from": "kromgart_body_enc",
+    "bodypart": "torso"
+  },
+
+  {
+    "id": "kromgart_body_warmth",
+    "type": "widget",
+    "copy-from": "kromgart_body_graph_block",
+    "var": "bp_warmth",
+    "colors": ["c_blue", "c_light_blue", "c_cyan", "c_black", "c_yellow", "c_light_red", "c_red" ],
+    "breaks": [ 38, 42, 46, 54, 58, 62]
+  },
+  {
+    "id": "kromgart_body_warmth_leg_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_warmth",
+    "bodypart": "leg_l"
+  },
+  {
+    "id": "kromgart_body_warmth_leg_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_warmth",
+    "bodypart": "leg_r"
+  },
+  {
+    "id": "kromgart_body_warmth_arm_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_warmth",
+    "bodypart": "arm_l"
+  },
+  {
+    "id": "kromgart_body_warmth_arm_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_warmth",
+    "bodypart": "arm_r"
+  },
+  {
+    "id": "kromgart_body_warmth_head",
+    "type": "widget",
+    "copy-from": "kromgart_body_warmth",
+    "bodypart": "head"
+  },
+  {
+    "id": "kromgart_body_warmth_torso",
+    "type": "widget",
+    "copy-from": "kromgart_body_warmth",
+    "bodypart": "torso"
+  },
+
+  {
+    "id": "kromgart_body_wetness",
+    "type": "widget",
+    "copy-from": "kromgart_body_graph_block",
+    "var": "bp_wetness",
+    "colors": [ "c_black", "c_cyan", "c_light_blue", "c_blue" ],
+    "breaks": [ 1, 30, 60 ]
+  },
+  {
+    "id": "kromgart_body_wetness_leg_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_wetness",
+    "bodypart": "leg_l"
+  },
+  {
+    "id": "kromgart_body_wetness_leg_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_wetness",
+    "bodypart": "leg_r"
+  },
+  {
+    "id": "kromgart_body_wetness_arm_left",
+    "type": "widget",
+    "copy-from": "kromgart_body_wetness",
+    "bodypart": "arm_l"
+  },
+  {
+    "id": "kromgart_body_wetness_arm_right",
+    "type": "widget",
+    "copy-from": "kromgart_body_wetness",
+    "bodypart": "arm_r"
+  },
+  {
+    "id": "kromgart_body_wetness_head",
+    "type": "widget",
+    "copy-from": "kromgart_body_wetness",
+    "bodypart": "head"
+  },
+  {
+    "id": "kromgart_body_wetness_torso",
+    "type": "widget",
+    "copy-from": "kromgart_body_wetness",
+    "bodypart": "torso"
+  },
+
+  {
+    "id": "kromgart_body_row_status",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_template",
+    "widgets": [
+      "kromgart_body_status_label",
+      "kromgart_body_status_leg_left",
+      "kromgart_body_status_arm_left",
+      "kromgart_body_status_head",
+      "kromgart_body_status_torso",
+      "kromgart_body_status_arm_right",
+      "kromgart_body_status_leg_right"
+    ]
+  },
+  {
+    "id": "kromgart_bodypart_status_indicator",
+    "type": "widget",
+    "width": 1,
+    "flags": [ "W_LABEL_NONE" ],
+    "style": "clause",
+    "clauses": [
+      {
+        "id": "bleeding",
+        "text": "*",
+        "color": "red",
+        "condition": { "u_has_effect": "bleed", "intensity": 1 }
+      },
+
+      {
+        "id": "bitten",
+        "text": "z",
+        "color": "yellow",
+        "condition": { "and": [
+          { "u_has_effect": "bite" },
+          { "not": { "u_has_effect": "bleed" } }
+        ] }
+      },
+      {
+        "id": "infected",
+        "text": "i",
+        "color": "pink",
+        "condition": { "and": [
+          { "u_has_effect": "infected" },
+          { "not": { "u_has_effect": "bite" } },
+          { "not": { "u_has_effect": "bleed" } }
+        ] }
+      },
+      {
+        "id": "broken",
+        "text": "%",
+        "color": "white",
+        "condition": { "and": [
+          { "math": [ "u_hp(_widget) == 0" ] },
+          { "not": { "u_has_effect": "infected" } },
+          { "not": { "u_has_effect": "bite" } },
+          { "not": { "u_has_effect": "bleed" } }
+        ] }
+      }
+    ],
+    "default_clause": {
+      "text": " "
+    }
+  },
+
+
+  {
+    "id": "kromgart_body_status_leg_left",
+    "type": "widget",
+    "style": "text",
+    "copy-from": "kromgart_bodypart_status_indicator",
+    "bodypart": "leg_l"
+  },
+  {
+    "id": "kromgart_body_status_leg_right",
+    "type": "widget",
+    "style": "text",
+    "copy-from": "kromgart_bodypart_status_indicator",
+    "bodypart": "leg_r"
+  },
+  {
+    "id": "kromgart_body_status_arm_left",
+    "type": "widget",
+    "style": "text",
+    "copy-from": "kromgart_bodypart_status_indicator",
+    "bodypart": "arm_l"
+  },
+  {
+    "id": "kromgart_body_status_arm_right",
+    "type": "widget",
+    "style": "text",
+    "copy-from": "kromgart_bodypart_status_indicator",
+    "bodypart": "arm_r"
+  },
+  {
+    "id": "kromgart_body_status_head",
+    "type": "widget",
+    "style": "text",
+    "copy-from": "kromgart_bodypart_status_indicator",
+    "bodypart": "head"
+  },
+  {
+    "id": "kromgart_body_status_torso",
+    "type": "widget",
+    "style": "text",
+    "copy-from": "kromgart_bodypart_status_indicator",
+    "bodypart": "torso"
+  },
+
+  {
+    "id": "kromgart_body_row_hp",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_template",
+    "widgets": [
+      "kromgart_body_hp_label",
+      "kromgart_body_hp_leg_left",
+      "kromgart_body_hp_arm_left",
+      "kromgart_body_hp_head",
+      "kromgart_body_hp_torso",
+      "kromgart_body_hp_arm_right",
+      "kromgart_body_hp_leg_right"
+    ]
+  },
+  
+  {
+    "id": "kromgart_body_row_enc",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_template",
+    "widgets": [
+      "kromgart_body_enc_label",
+      "kromgart_body_enc_leg_left",
+      "kromgart_body_enc_arm_left",
+      "kromgart_body_enc_head",
+      "kromgart_body_enc_torso",
+      "kromgart_body_enc_arm_right",
+      "kromgart_body_enc_leg_right"
+    ]
+  },
+  
+  {
+    "id": "kromgart_body_row_warmth",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_template",
+    "widgets": [
+      "kromgart_body_warmth_label",
+      "kromgart_body_warmth_leg_left",
+      "kromgart_body_warmth_arm_left",
+      "kromgart_body_warmth_head",
+      "kromgart_body_warmth_torso",
+      "kromgart_body_warmth_arm_right",
+      "kromgart_body_warmth_leg_right"
+    ]
+  },
+
+  {
+    "id": "kromgart_body_row_wetness",
+    "type": "widget",
+    "copy-from": "kromgart_body_row_template",
+    "widgets": [
+      "kromgart_body_wetness_label",
+      "kromgart_body_wetness_leg_left",
+      "kromgart_body_wetness_arm_left",
+      "kromgart_body_wetness_head",
+      "kromgart_body_wetness_torso",
+      "kromgart_body_wetness_arm_right",
+      "kromgart_body_wetness_leg_right"
+    ]
+  }
+
+]

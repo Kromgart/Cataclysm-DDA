@@ -1,0 +1,64 @@
+[
+  {
+    "id": "kromgart_needs",
+    "label": "needs",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "rows",
+    "width": 15,
+    "widgets": [
+      "kromgart_mood_row",
+      "pain_desc_no_label",
+      "sleepiness_desc_no_label",
+      "hunger_desc_no_label",
+      "thirst_desc_no_label",
+      "kromgart_bodytemp_row",
+      "kromgart_pad__"
+    ]
+  },
+
+  {
+    "id": "kromgart_bodytemp_row",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "widgets": [ "kromgart_bodytemp", "kromgart_bodytemp_delta" ]
+  },
+  {
+    "id": "kromgart_bodytemp",
+    "type": "widget",
+    "width": 11,
+    "copy-from": "body_temp_desc_no_label"
+  },
+  {
+    "id": "kromgart_bodytemp_delta",
+    "type": "widget",
+    "copy-from": "body_temp_delta_sym_no_label",
+    "text_align": "left"
+  },
+
+  {
+    "id": "kromgart_mood_row",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "widgets": [ "kromgart_morale", "kromgart_focus" ]
+  },
+  {
+    "id": "kromgart_morale",
+    "type": "widget",
+    "copy-from": "morale_num",
+    "text_align": "right",
+    "label": "Mood",
+    "width": 9
+  },
+  {
+    "id": "kromgart_focus",
+    "type": "widget",
+    "copy-from": "focus_num",
+    "text_align": "left",
+    "label": "/",
+    "width": 5
+  }
+
+]
