@@ -190,6 +190,7 @@ static const limb_score_id limb_score_vision( "vision" );
 static const morale_type morale_cold( "morale_cold" );
 static const morale_type morale_hot( "morale_hot" );
 static const morale_type morale_killed_innocent( "morale_killed_innocent" );
+static const morale_type morale_killed_monster( "morale_killed_monster" );
 static const morale_type morale_killer_has_killed( "morale_killer_has_killed" );
 static const morale_type morale_pyromania_nofire( "morale_pyromania_nofire" );
 static const morale_type morale_pyromania_startfire( "morale_pyromania_startfire" );
@@ -654,6 +655,17 @@ void Character::apply_murder_penalties( Creature *victim )
         } else if( morale_effect > -50 && morale_effect < 0 ) {
             player_character.add_morale( morale_killed_innocent, morale_effect, 0, 10_days, 7_days );
         }
+    }
+}
+
+void Character::apply_killer_penalties()
+{
+    Character &player_character = get_player_character();
+    cata_assert( this == &player_character );
+
+    if( player_character.has_trait( trait_PACIFIST ) ) {
+        add_msg( _( "You are saddened by ending this life." ) );
+        player_character.add_morale( morale_killed_monster, -10, -40, 12_hours, 6_hours );
     }
 }
 
