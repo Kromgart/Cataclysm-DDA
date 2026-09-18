@@ -52,7 +52,7 @@
         }
       ]
     },
-    "effect": [ { "math": [ "u_awakening_countup += rand(8) + 1" ] }, { "math": [ "u_has_initial_awakening_countup_set = 1" ] } ],
+    "effect": [ { "math": [ "u_awakening_countup += 1" ] }, { "math": [ "u_has_initial_awakening_countup_set = 1" ] } ],
     "false_effect": [ { "math": [ "u_has_initial_awakening_countup_set = 1" ] } ]
   },
   {
@@ -149,6 +149,6 @@
     "eoc_type": "EVENT",
     "required_event": "game_start",
     "condition": { "u_has_trait": "PSYCHIC_KNACK" },
-    "effect": [ { "math": [ "u_awakening_countup += (u_spell_count('school': 'PSYCHIC_KNACK') / 2)" ] } ]
+    "effect": [ ]
   }
 ]
