@@ -126,22 +126,9 @@ void Character::apply_persistent_morale()
             total_time += to_moves<float>( iter->second ) * ( max_dist - dist ) / max_dist;
         }
         // Characters with higher tiers of Nomad suffer worse morale penalties, faster.
-        int max_unhappiness;
-        float min_time;
-        float max_time;
-        if( has_trait( trait_NOMAD ) ) {
-            max_unhappiness = 20;
-            min_time = to_moves<float>( 12_hours );
-            max_time = to_moves<float>( 1_days );
-        } else if( has_trait( trait_NOMAD2 ) ) {
-            max_unhappiness = 40;
-            min_time = to_moves<float>( 4_hours );
-            max_time = to_moves<float>( 8_hours );
-        } else { // traid_NOMAD3
-            max_unhappiness = 60;
-            min_time = to_moves<float>( 1_hours );
-            max_time = to_moves<float>( 2_hours );
-        }
+        const int max_unhappiness = 60;
+        const float min_time = to_moves<float>( 2_days );
+        const float max_time = to_moves<float>( 8_days );
         // The penalty starts at 1 at min_time and scales up to max_unhappiness at max_time.
         const float t = ( total_time - min_time ) / ( max_time - min_time );
         const int pen = std::ceil( lerp_clamped( 0, max_unhappiness, t ) );
