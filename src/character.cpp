@@ -2582,10 +2582,6 @@ bool Character::practice( const skill_id &id, int amount, int cap, bool suppress
 
     amount = adjust_for_focus( std::min( 1000, amount ) ) * 100.0f;
 
-    if( has_trait( trait_PACIFIST ) && skill.is_combat_skill() ) {
-        amount /= 3.0f;
-    }
-
     catchup_modifier = enchantment_cache->modify_value( enchant_vals::mod::COMBAT_CATCHUP,
                        catchup_modifier );
 
