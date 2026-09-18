@@ -1,0 +1,66 @@
+[
+  {
+    "id": "kromgart_ma_vehicle",
+    "label": "martialart_or_vehicle",
+    "type": "widget",
+    "style": "layout",
+    "clauses": [ {
+      "id": "is_driving",
+      "condition": "u_controlling_vehicle",
+      "widgets": ["kromgart_vehicle"]
+    } ],
+    "default_clause": {
+      "widgets": ["kromgart_ma"]
+    },
+    "flags": [ "W_DISABLED_WHEN_EMPTY" ]
+  },
+
+  {
+    "id": "kromgart_ma",
+    "type": "widget",
+    "copy-from": "ma_buff_legend",
+    "height": 2
+  },
+
+  {
+    "id": "kromgart_vehicle",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "width": 50,
+    "padding": 0,
+    "widgets": [
+      "kromgart_vehicle_speed",
+      "kromgart_vehicle_fuel",
+      "kromgart_vehicle_battery"
+    ]
+  },
+
+  {
+    "id": "kromgart_vehicle_speed",
+    "type": "widget",
+    "label": "Drive ",
+    "style": "text",
+    "flags": [ "W_DISABLED_WHEN_EMPTY" ],
+    "var": "veh_cruise_text",
+    "text_align": "left",
+    "width": 20
+  },
+  {
+    "id": "kromgart_vehicle_fuel",
+    "type": "widget",
+    "label": " Fuel ",
+    "style": "text",
+    "flags": [ "W_DISABLED_WHEN_EMPTY" ],
+    "var": "veh_fuel_text"
+  },
+  {
+    "id": "kromgart_vehicle_battery",
+    "type": "widget",
+    "label": " Battery ",
+    "style": "text",
+    "flags": [ "W_DISABLED_WHEN_EMPTY" ],
+    "var": "veh_battery_text"
+  }
+
+]

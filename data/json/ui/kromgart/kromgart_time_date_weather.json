@@ -1,0 +1,67 @@
+[
+  {
+    "id": "kromgart_time_date_weather",
+    "label": "time_date_weather",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "rows",
+    "widgets": [ "kromgart_tdw_1", "kromgart_tdw_2", "kromgart_tdw_3" ]
+  },
+
+  {
+    "id": "kromgart_tdw_1",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "widgets": [ "kromgart_sundial", "weather_desc_no_label" ]
+  },
+  {
+    "id": "kromgart_sundial",
+    "type": "widget",
+    "copy-from": "sundial_desc_no_label",
+    "width": 30
+  },
+
+  {
+    "id": "kromgart_tdw_2",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "widgets": [ "kromgart_moon", "kromgart_date", "time_desc_no_label" ]
+  },
+  {
+    "id": "kromgart_moon",
+    "type": "widget",
+    "copy-from": "moon_phase_graph",
+    "width": 6,
+    "flags": [ "W_LABEL_NONE" ]
+  },
+  {
+    "id": "kromgart_date",
+    "type": "widget",
+    "copy-from": "date_desc_no_label",
+    "width": 23
+  },
+
+
+  {
+    "id": "kromgart_tdw_3",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "widgets": [ "kromgart_wind", "kromgart_snow_depth", "env_temp_desc_no_label" ]
+  },
+  {
+    "id": "kromgart_wind",
+    "type": "widget",
+    "copy-from": "wind_desc_no_label",
+    "width": 19
+  },
+  {
+    "id": "kromgart_snow_depth",
+    "type": "widget",
+    "copy-from": "snow_depth_desc",
+    "width": 10,
+    "flags": [ "W_LABEL_NONE" ]
+  }
+]

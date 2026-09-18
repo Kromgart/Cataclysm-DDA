@@ -1,0 +1,60 @@
+[
+  {
+    "id": "kromgart_sound_speed_safe",
+    "label": "sound_speed_safe",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "width": 50,
+    "padding": 0,
+    "widgets": [
+      "kromgart_sound",
+      "kromgart_speed",
+      "kromgart_pad_slash",
+      "kromgart_movement",
+      "kromgart_safe"
+    ]
+  },
+
+
+  {
+    "id": "kromgart_sound",
+    "type": "widget",
+    "style": "number",
+    "label": "Sound ",
+    "var": "sound",
+    "width": 8,
+    "text_align": "left"
+  },
+
+  {
+    "id": "kromgart_speed",
+    "type": "widget",
+    "copy-from": "speed_num",
+    "label": "          Speed ",
+    "width": 19,
+    "text_align": "right"
+  },
+
+  {
+    "id": "kromgart_movement",
+    "type": "widget",
+    "style": "text",
+    "var": "move_count_mode_text",
+    "width": 6,
+    "text_align": "left",
+    "flags": [ "W_LABEL_NONE" ]
+  },
+
+
+  {
+    "id": "kromgart_safe",
+    "type": "widget",
+    "style": "text",
+    "var": "safe_mode_text",
+    "label": "      Safe ",
+    "width": 14
+  }
+
+
+]
