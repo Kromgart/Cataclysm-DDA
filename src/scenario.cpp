@@ -156,6 +156,10 @@ void scenario::load( const JsonObject &jo, std::string_view )
                                  calendar::year_length() * ( _start_of_game_year - 1 )
                                  ;
 
+        const time_duration _start_offset = 1_days * rng( 0, 4 * get_option<int>( "SEASON_LENGTH" ) - 1 ) + 1_hours * rng( 0, 23 );
+        _default_start_of_cataclysm += _start_offset;
+        _default_start_of_game += _start_offset;
+
         reset_calendar();
     }
 
