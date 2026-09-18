@@ -3217,9 +3217,13 @@ void monster::die( map *here, Creature *nkiller )
         }
     }
 
-    // This is special-cased "death guilt" for human "monsters". They apply full murder penalties, it's quite a bit different to kill a living human than to re-kill the corpse of a child.
-    if( type->has_flag( mon_flag_GUILT_HUMAN ) && get_killer() == &get_player_character() ) {
-        get_player_character().apply_murder_penalties( this );
+    if( get_killer() == &get_player_character() ) {
+        if( type->has_flag( mon_flag_GUILT_HUMAN ) ) {
+            // This is special-cased "death guilt" for human "monsters". They apply full murder penalties, it's quite a bit different to kill a living human than to re-kill the corpse of a child.
+            get_player_character().apply_murder_penalties( this );
+        } else if( !type->has_flag ( mon_flag_NO_BREATHE ) || type->has_flag( mon_flag_ANIMAL ) ) {
+            get_player_character().apply_killer_penalties();
+        }
     }
 
     if( type->mdeath_effect.eoc.has_value() ) {
