@@ -1505,7 +1505,7 @@ void vehicle::selfdrive( map &here, const int trn, const int acceleration )
     }
     if( acceleration != 0 ) {
         if( !is_towed() ) {
-            const int thr_amount = std::abs( velocity ) < 2000 ? 400 : 500;
+            const int thr_amount = std::abs( velocity ) < 2000 ? 186 : 310;
             cruise_thrust( here, -acceleration * thr_amount );
         } else {
             thrust( here,  -acceleration );
@@ -1713,7 +1713,8 @@ void vehicle::pldrive( map &here, Character &driver, const int trn, const int ac
     }
 
     if( acceleration != 0 ) {
-        cruise_thrust( here, -acceleration * 400 );
+        const int acceleration_delta_mult = std::abs( acceleration ) < 6 ? 186 : 310;
+        cruise_thrust( here, -acceleration * acceleration_delta_mult );
     }
 
     // TODO: Actually check if we're on land on water (or disable water-skidding)
