@@ -3509,10 +3509,14 @@ void Character::temp_equalizer( const bodypart_id &bp1, const bodypart_id &bp2 )
         return;
     }
     // Body heat is moved around.
-    // Shift in one direction only, will be shifted in the other direction separately.
-    const units::temperature_delta diff = ( get_part_temp_cur( bp2 ) - get_part_temp_cur( bp1 ) ) *
-                                          0.0001; // If bp1 is warmer, it will lose heat
-    mod_part_temp_cur( bp1, diff );
+    // If bp1 is warmer, it will lose heat
+    const units::temperature_delta diff = get_part_temp_cur( bp2 ) - get_part_temp_cur( bp1 );
+
+    if( bp1 == body_part_mouth && diff > 1_C_delta ) {
+        mod_part_temp_cur( bp1, diff * 0.001 );
+    } else {
+        mod_part_temp_cur( bp1, diff * 0.0001 );
+    }
 }
 
 float Character::get_dodge_base() const
