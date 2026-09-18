@@ -1,0 +1,89 @@
+[
+  {
+    "id": "kromgart_sidebar",
+    "type": "widget",
+    "style": "sidebar",
+    "label": "kromgart",
+    "description": "my sidebar",
+    "separator": " ",
+    "width": 52,
+    "padding": 1,
+    "widgets": [
+      "kromgart_ruler",
+      "kromgart_time_date_weather",
+      "separator",
+      "kromgart_stats_needs_bodyparts",
+      "separator",
+      "kromgart_sound_speed_safe",
+      "wielding_desc_no_label",
+      "separator",
+      "kromgart_ma_vehicle",
+      "separator",
+      "compass_all_layout"
+    ]
+  },
+  
+  {
+    "id": "kromgart_stats_needs_bodyparts",
+    "label": "stats_needs_bodyparts",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "minimum_columns",
+    "widgets": [
+      "kromgart_stats",
+      "kromgart_body",
+      "kromgart_needs",
+      "kromgart_reserves"
+    ]
+  },
+
+  {
+    "id": "kromgart_pad_5__",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "rows",
+    "widgets": [
+      "kromgart_pad__",
+      "kromgart_pad__",
+      "kromgart_pad__",
+      "kromgart_pad__",
+      "kromgart_pad__"
+    ]
+  },
+
+  {
+    "id": "kromgart_pad__",
+    "type": "widget",
+    "style": "text",
+    "padding": 0,
+    "string": "_",
+    "flags": [ "W_LABEL_NONE" ]
+  },
+
+  {
+    "id": "kromgart_pad_space",
+    "type": "widget",
+    "style": "text",
+    "string": " ",
+    "flags": [ "W_LABEL_NONE" ]
+  },
+
+  {
+    "id": "kromgart_pad_slash",
+    "type": "widget",
+    "style": "text",
+    "string": " / ",
+    "width": 3,
+    "flags": [ "W_LABEL_NONE" ]
+  },
+
+  {
+    "id": "kromgart_ruler",
+    "type": "widget",
+    "style": "text",
+    "label": "ruler",
+    "string": "12345678901234567890123456789012345678901234567890",
+    "flags": [ "W_LABEL_NONE" ]
+  }
+  
+]

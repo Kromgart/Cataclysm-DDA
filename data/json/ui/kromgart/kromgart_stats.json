@@ -1,0 +1,72 @@
+[
+  {
+    "id": "kromgart_stats",
+    "label": "stats",
+    "type": "widget",
+    "style": "layout",
+    "arrange": "rows",
+    "width": 5,
+    "padding": 0,
+    "pad_labels": false,
+    "widgets": [
+      "kromgart_stat_str",
+      "kromgart_stat_dex",
+      "kromgart_stat_int",
+      "kromgart_stat_per",
+      "kromgart_pad_space",
+      "kromgart_fitness_header",
+      "kromgart_fitness"
+    ]
+  },
+
+  {
+    "id": "kromgart_stat_str",
+    "type": "widget",
+    "style": "number",
+    "label": "St ",
+    "var": "stat_str"
+  },
+  {
+    "id": "kromgart_stat_dex",
+    "type": "widget",
+    "style": "number",
+    "label": "Dx ",
+    "var": "stat_dex"
+  },
+  {
+    "id": "kromgart_stat_int",
+    "type": "widget",
+    "style": "number",
+    "label": "In ",
+    "var": "stat_int"
+  },
+  {
+    "id": "kromgart_stat_per",
+    "type": "widget",
+    "style": "number",
+    "label": "Pe ",
+    "var": "stat_per"
+  },
+
+  {
+    "id": "kromgart_fitness_header",
+    "type": "widget",
+    "style": "text",
+    "width": 5,
+    "string": " Fit ",
+    "flags": [ "W_LABEL_NONE" ]
+  },
+
+  {
+    "id": "kromgart_fitness",
+    "type": "widget",
+    "style": "graph",
+    "width": 5,
+    "var": "cardio_fit",
+    "symbols": "-▏▎▍▌▋▊▉█",
+    "colors": [ "c_light_gray" ],
+    "flags": [ "W_LABEL_NONE" ]
+  }
+
+
+]
