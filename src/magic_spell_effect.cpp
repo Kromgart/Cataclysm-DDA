@@ -1714,23 +1714,6 @@ void spell_effect::guilt( const spell &sp, Creature &caster, const tripoint_bub_
         if( guilt_target == nullptr ) {
             continue;
         }
-        // there used to be a MAX_GUILT_DISTANCE here, but the spell's range will do this instead.
-        monster &z = *caster.as_monster();
-        const int kill_count = g->get_kill_tracker().guilt_kill_count();
-        // this is when the player stops caring altogether.
-        const int max_kills = sp.damage( caster );
-        // this determines how strong the morale penalty will be
-        const int guilt_mult = sp.get_effective_level();
-
-        // different message as we kill more of the same monster
-        std::string msg;
-        game_message_type msgtype = m_bad; // default guilt message type
-        std::map<int, std::string> guilt_thresholds;
-        guilt_thresholds[ ceil( max_kills * 0.25 ) ] = _( "You feel awful about killing %s." );
-        guilt_thresholds[ ceil( max_kills * 0.5 ) ] = _( "You feel remorse for killing %s." );
-        guilt_thresholds[ ceil( max_kills * 0.75 ) ] = _( "You feel guilty for killing %s." );
-        guilt_thresholds[max_kills] = _( "You feel uneasy about killing %s." );
-
         Character &guy = *guilt_target;
         if( guy.has_flag( json_flag_NUMB ) || guy.has_flag( json_flag_PSYCHOPATH ) ||
             guy.has_flag( json_flag_PRED3 ) || guy.has_flag( json_flag_PRED4 ) ) {
@@ -1738,52 +1721,53 @@ void spell_effect::guilt( const spell &sp, Creature &caster, const tripoint_bub_
             return;
         }
 
-        if( guy.has_flag( json_flag_PRED1 ) ||
-            guy.has_flag( json_flag_PRED2 ) ) {
-            msg = _( "Culling the weak is distasteful, but necessary." );
-            msgtype = m_neutral;
-        } else {
-            for( const std::pair<const int, std::string> &guilt_threshold : guilt_thresholds ) {
-                if( kill_count < guilt_threshold.first ) {
-                    msg = guilt_threshold.second;
-                    break;
-                }
-            }
-        }
+        const bool is_predator_1 = guy.has_flag( json_flag_PRED1 );
+        const bool is_predator_2 = !is_predator_1 && guy.has_flag( json_flag_PRED2 );
+        const bool is_pacifist = guy.has_trait( trait_PACIFIST );
 
-        guy.add_msg_if_player( msgtype, msg, z.name() );
-
-        // No direct modifier for guilt based on existing kills, ALL morale is already modified.
-        int moraleMalus = -5 * guilt_mult;
-        const int maxMalus = std::numeric_limits<int>::max();
-        const time_duration duration = sp.duration_turns( caster );
+        std::string msg;
+        game_message_type msgtype = m_bad; // default guilt message type
+        float guilt_strength = 1.0f;
+        time_duration duration = sp.duration_turns( caster );
         const time_duration decayDelay = duration / 2;
 
-        bool shared_species = false;
-        if( caster.is_dead_state() && caster.get_killer() != nullptr ) {
-            for( const species_id &specie : caster.as_monster()->type->species ) {
-                if( guy.in_species( specie ) ) {
-                    shared_species = true;
-                }
+        if( !is_pacifist ) {
+            // Can adapt
+            const float max_kills = static_cast<float>( sp.damage( caster ) );
+            const float kill_count = static_cast<float>( g->get_kill_tracker().guilt_kill_count() );
+            guilt_strength = 1.0f - std::min( 1.0f, kill_count / max_kills );
+
+            if ( is_predator_1 || is_predator_2 ) {
+                msg = _( "Culling the weak is distasteful, but necessary." );
+                msgtype = m_neutral;
+            } else if( guilt_strength < 0.25f ) {
+                msg = _( "You feel uneasy about killing %s." );
+            } else if( guilt_strength < 0.5f ) {
+                msg = _( "You feel guilty for killing %s." );
+            } else if( guilt_strength < 0.75f ) {
+                msg = _( "You feel remorse for killing %s." );
+            } else {
+                msg = _( "You feel awful about killing %s." );
             }
-        } else if( z.type->in_species( species_id( sp.effect_data() ) ) ) {
-            shared_species = true;
+        } else {
+            // No progressive adaptation and longer-lasting effect
+            msg = _( "You feel awful about killing %s." );
+            duration *= 2;
         }
-        // killing your own kind hurts your soul more
-        if( shared_species ) {
-            moraleMalus *= 2;
+
+        // Pacifist-Predators1-2 are possible, this bonus is applied here
+        if ( is_predator_1 ) {
+            guilt_strength *= 0.25f;
+        } else if ( is_predator_2 ) {
+            guilt_strength *= 0.2f;
         }
-        if( guy.has_trait( trait_PACIFIST ) ) {
-            moraleMalus *= 5;
-        }
-        // cullers feel less bad about killing
-        else if( guy.has_flag( json_flag_PRED1 ) ) {
-            moraleMalus /= 4;
-        }
-        // hunters feel less bad about killing
-        else if( guy.has_flag( json_flag_PRED2 ) ) {
-            moraleMalus /= 5;
-        }
+
+        // No direct modifier for guilt based on existing kills, ALL morale is already modified.
+        const int moraleMalus = ceil( static_cast<float>( -5 * sp.get_effective_level() ) * guilt_strength );
+        const int maxMalus = floor( -200.0f * guilt_strength );
+
+        monster &z = *caster.as_monster();
+        guy.add_msg_if_player( msgtype, msg, z.name() );
         guy.add_morale( morale_killed_monster, moraleMalus, maxMalus, duration, decayDelay );
     }
 }
