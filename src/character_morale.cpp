@@ -159,18 +159,9 @@ double Character::get_modifier_for_ALL_morale() const
 {
     if( has_flag( json_flag_NUMB ) ) {
         return 0.0; // I just don't care about anything anymore... (medical mutant)
-    }
-
-    // Only player is bothered by guilt kills, because only player tracks them.
-    if( !is_avatar() || has_flag( json_flag_PSYCHOPATH ) ||
-        has_flag( json_flag_PRED3 ) || has_flag( json_flag_PRED4 ) ) {
-        // No guilt.
+    } else {
         return 1.0;
     }
-
-    // Sanity check, at 1000 kills we're down to all morale modifiers being ~5% of max.
-    const int num_kills = std::clamp( g->get_kill_tracker().guilt_kill_count(), 0, 1000 );
-    return std::pow( 0.997, num_kills );
 }
 
 int Character::get_morale_level( bool raw ) const
