@@ -458,15 +458,15 @@ inline constexpr value_type to_fahrenheit( const
 
 inline constexpr units::temperature from_legacy_bodypart_temp( int temp )
 {
-    return units::from_celsius( 37.0 + ( temp - 5000.0 ) * 0.002 );
+    return units::from_fahrenheit( 100.0 + static_cast<float>( temp - 5000 ) * 0.004 );
 }
 
 template<typename value_type>
 inline constexpr int to_legacy_bodypart_temp( const
         quantity<value_type, temperature_in_kelvin_tag> &v )
 {
-    const auto c = units::to_celsius( v );
-    return static_cast<int>( ( c - 37.0 ) * 500.0 + 5000.0 );
+    const auto f = units::to_fahrenheit( v );
+    return static_cast<int>( ( f - 100.0 ) * 250.0 ) + 5000;
 }
 
 template<typename value_type>
