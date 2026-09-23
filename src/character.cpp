@@ -4162,14 +4162,10 @@ int Character::height() const
 
 int Character::base_bmr() const
 {
-    /**
-    Values are for males, and average!
-    */
-    const int equation_constant = 5;
-    const int weight_factor = units::to_gram<int>( bodyweight() / 100.0 );
-    const int height_factor = 6.25 * height();
-    const int age_factor = 5 * age();
-    return metabolic_rate_base() * ( weight_factor + height_factor - age_factor + equation_constant );
+    const float weight_factor = 15e-6f * units::to_milligram<float>( bodyweight() );
+    const float height_factor = 4.0f * height();
+    const float age_factor = 5.0f * age();
+    return static_cast<int>( metabolic_rate_base() * ( 1000.0f + weight_factor - height_factor - age_factor ) );
 }
 
 void Character::set_activity_level( float new_level )
